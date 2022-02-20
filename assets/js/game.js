@@ -1,6 +1,4 @@
-//window.alert('This is an alert that javascript is working!');
-
-// getting user input 
+// global variables  
 var playerName = window.prompt("what is your robots name?");
 var playerHealth = 100;
 var playerAttack = 10;
@@ -8,16 +6,16 @@ var playerMoney = 10;
 // log mutiple values at once 
 //console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12; 
 
 //showing user input
-console.log(playerName + "is your robot's name!");
+console.log(playerName + " is your robot's name!");
 
 
 //Making our first fight function
-var fight = function() {
+var fight = function(enemyName) {
     //Alert players that they are startinf the round 
     window.alert("Welcome to robot gladiators!");
 
@@ -73,4 +71,7 @@ var fight = function() {
 };
 
 //calling the fight function
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
+//fight();
