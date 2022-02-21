@@ -70,24 +70,73 @@ var fight = function(enemyName) {
     }    
 }
 
-for (var i = 0; i < enemyNames.length; i++) {
-    if (playerHealth > 0) {
-            // let players know the round they are in, remember that arrays start at 0 so it needs to have 1 added to it 
-    window.alert("welcome to Robot Gladiators! Round " + (i + 1));
-
-    //pick new enemy to fight based on the index of the enemyNames array 
-    var pickedEnemyName = enemyNames[i];
-
-    //reset enemyHealth befgoe starting a new fight 
-    enemyHealth = 50; 
+//function to start a new game 
+var startGame = function () {
+    //reset player stats 
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+        // let players know the round they are in, remember that arrays start at 0 so it needs to have 1 added to it 
+        window.alert("welcome to Robot Gladiators! Round " + (i + 1));
     
-    //use debugger to pause script from running and check what's going on at that moment in the code
-    //debugger;
-
-    //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter 
-    fight(pickedEnemyName);
-    } else {
-        window.alert("You have lost your robot in battle! Game Over!");
-        break;
+        //pick new enemy to fight based on the index of the enemyNames array 
+        var pickedEnemyName = enemyNames[i];
+    
+        //reset enemyHealth befgoe starting a new fight 
+        enemyHealth = 50; 
+        
+        //use debugger to pause script from running and check what's going on at that moment in the code
+        //debugger;
+    
+        //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter 
+        fight(pickedEnemyName);
+        } 
+        else {
+            window.alert("You have lost your robot in battle! Game Over!");
+            break;
+        }
+    }
+    //after the loop ends, player is either out of lives or enemies to fight. 
+    endgame();
+    //startGame();
+}
+var endgame = function() {
+    if (playerHealth > 0) {
+        window.alert("Great job, you've survived the Game! You now have a score of" + playerMoney + ". " );
+    }
+    else {
+        window.alert("You've lost you robot in battle.");
+    }
+    //ask player if they would like to play again
+    var playAgainConfirm = window.confirm("Would you like to play agaian?");
+    if (playAgainConfirm) {
+        //restart the game 
+        startGame();
+    }
+    else {
+        window.alert("Thank you for playing Robot Gladiator! Come back soon!");
     }
 }
+startGame();
+
+
+
+
+
+
+
+
+
+
+//pseudocoding the next problems 
+//alert as if players would like to play again and adition displays players score 
+//defeating or skipping enemy enables option to enter shop 
+
+
+//lesson 3.3.2 
+//add startGame()
+//add endGame()
+//finalize MVP and switch branches 
+//add shop()
