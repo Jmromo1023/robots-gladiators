@@ -3,9 +3,7 @@ var playerName = window.prompt("what is your robots name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
-// log mutiple values at once 
-//console.log(playerName, playerAttack, playerHealth);
-
+ 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12; 
@@ -68,7 +66,7 @@ var fight = function(enemyName) {
             window.alert(playerName + 'still has ' + playerHealth + ' health left.');
         }
     }    
-}
+};
 
 
 
@@ -89,9 +87,6 @@ var startGame = function () {
         //reset enemyHealth befgoe starting a new fight 
         enemyHealth = 50; 
         
-        //use debugger to pause script from running and check what's going on at that moment in the code
-        //debugger;
-    
         //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter 
         fight(pickedEnemyName);
         
@@ -116,7 +111,8 @@ var startGame = function () {
     //after the loop ends, player is either out of lives or enemies to fight. 
     endgame();
     //startGame();
-}
+};
+
 var endgame = function() {
     if (playerHealth > 0) {
         window.alert("Great job, you've survived the Game! You now have a score of" + playerMoney + ". " );
@@ -133,7 +129,8 @@ var endgame = function() {
     else {
         window.alert("Thank you for playing Robot Gladiator! Come back soon!");
     }
-}
+};
+
 var shop = function() {
     //ask player what they'd like to do 
     var shopOptionPropmt = window.prompt(
