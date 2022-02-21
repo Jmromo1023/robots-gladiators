@@ -14,7 +14,7 @@ console.log(playerName + " is your robot's name!");
 
 //Making our first fight function
 var fight = function(enemyName) {
-    //window.alert('Welcome to Robot Gladiators!');
+    
     //repeat and execute as long as the enemy-robot is alive 
     while(playerHealth > 0 && enemyHealth > 0 ) {
         //ask player if they would like to skip or fight 
@@ -29,13 +29,17 @@ var fight = function(enemyName) {
             if(confirmSkip) {
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
                 //subract money from player for skipping 
-                playerMoney = playerMoney - 10;
+                //playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playerMoney", playerMoney)
                 break;
             }
         }
-        //remove enemy's health 
-        enemyHealth = enemyHealth - playerAttack;
+        //remove enemy's health generate random damage based on player's attack power 
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+
+        enemyHealth = Math.max(0, enemyHealth - damage);
+
         console.log(
             playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
         );
@@ -51,8 +55,11 @@ var fight = function(enemyName) {
         } else {
             window.alert(enemyName + ' still has ' + enemyHealth + ' health left. ');
         }
-        // remove player's health 
-        playerHealth = playerHealth - enemyAttack;
+        // remove player's health generate random damage based on enemies attack 
+        var daamge = randomNumber(enemyAttack - 3, enemyAttack);
+
+        playerHealth = Math.max(0, playerHealth - damage);
+
         console.log(
             enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining. '
         );
@@ -67,8 +74,6 @@ var fight = function(enemyName) {
         }
     }    
 };
-
-
 
 //function to start a new game 
 var startGame = function () {
@@ -85,7 +90,9 @@ var startGame = function () {
         var pickedEnemyName = enemyNames[i];
     
         //reset enemyHealth befgoe starting a new fight 
-        enemyHealth = 50; 
+        //enemyHealth = 50; 
+        //enemyHealth = Math.floor(Math.random() * 21) + 40;
+        enemyHealth = randomNumber(40, 60);
         
         //pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter 
         fight(pickedEnemyName);
@@ -176,6 +183,11 @@ var shop = function() {
             break;
     }
 };
+var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random () * (max - min + 1 ) + min);
+
+    return value;
+}
 startGame();
 
 
