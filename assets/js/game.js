@@ -154,22 +154,21 @@ var endgame = function() {
 // go to shop between battles function
 var shop = function() {
     //ask player what they'd like to do 
-    var shopOptionPropmt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', OR 'LEAVE' to make a choice."
+    var shopOptionPrompt = window.prompt(
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
     );
 
-    //use switch to carry out action 
-    switch (shopOptionPropmt) {
-        case "REFILL" : // new case
-        case "refill":
+    //use switch to carry out action
+    shopOptionPrompt = parseInt(shopOptionPrompt);
+
+    switch (shopOptionPrompt) {
+        case 1:
             playerInfo.refillHealth();
             break;
-        case "UPGRADE":
-        case "upgrade":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "LEAVE" : // new case
-        case "leave" : 
+        case 3:
             window.alert("Leaving the store.")
             break;
         default:
@@ -209,7 +208,7 @@ var playerInfo = {
         if(this.money >= 7) {
             window.alert("Refilling player's health by 20 for 7 dollars.");
             this.health += 20;
-            thismoney -= 7;
+            this.money -= 7;
         } else {
             window.alert("You don't have enough money!");
         }
